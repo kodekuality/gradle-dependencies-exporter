@@ -1,0 +1,44 @@
+plugins {
+    id("java-gradle-plugin")
+    id 'com.gradle.plugin-publish' version '1.2.1'
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/joao-de-melo/gradle-dependencies-exporter"
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+gradlePlugin {
+    plugins {
+        dependenciesExporter {
+            id = 'gradle.dependencies.exporter'
+            implementationClass = 'gradle.dependencies.exporter.GradleDependenciesExporter'
+        }
+    }
+}
+
+dependencies {
+    implementation gradleApi()
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("org.xmlunit:xmlunit-core:2.9.1")
+    testImplementation("org.xmlunit:xmlunit-matchers:2.9.1")
+    testImplementation gradleTestKit()
+}
+
+
+tasks.named('test', Test) {
+    useJUnitPlatform()
+}
