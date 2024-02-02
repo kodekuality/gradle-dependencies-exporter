@@ -12,8 +12,8 @@ publishing {
             name = "GitHubPackages"
             url = "https://maven.pkg.github.com/joao-de-melo/gradle-dependencies-exporter"
             credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
+                username = "joao-de-melo"
+                password = System.getenv("PUBLISH_TOKEN")
             }
         }
     }
