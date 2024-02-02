@@ -4,6 +4,7 @@ plugins {
 }
 
 group = "me.joao-de-melo"
+version = System.getenv("VERSION") ?: "SNAPSHOT"
 
 publishing {
     repositories {

@@ -1,6 +1,10 @@
 name: Publish package to GitHub Packages
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        description: Version to publish
 
 jobs:
   publish:
@@ -21,4 +25,5 @@ jobs:
         with:
           arguments: publish
         env:
+          VERSION: ${{ inputs.version }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
