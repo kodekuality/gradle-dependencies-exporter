@@ -3,6 +3,8 @@ plugins {
     id 'com.gradle.plugin-publish' version '1.2.1'
 }
 
+group = "me.joao-de-melo"
+
 publishing {
     repositories {
         maven {
